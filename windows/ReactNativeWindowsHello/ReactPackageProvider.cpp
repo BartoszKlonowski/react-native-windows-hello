@@ -4,16 +4,14 @@
 #include "ReactPackageProvider.g.cpp"
 #endif
 
-#include "ReactNativeModule.h"
+#include "Source/ReactNativeWindowsHelloModule.hpp"
 
 using namespace winrt::Microsoft::ReactNative;
 
 namespace winrt::ReactNativeWindowsHello::implementation
 {
-
-void ReactPackageProvider::CreatePackage(IReactPackageBuilder const &packageBuilder) noexcept
-{
-    AddAttributedModules(packageBuilder);
+    void ReactPackageProvider::CreatePackage( IReactPackageBuilder const& packageBuilder ) noexcept
+    {
+        AddAttributedModules( packageBuilder );
+    }
 }
-
-} // namespace winrt::ReactNativeWindowsHello::implementation
