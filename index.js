@@ -1,7 +1,5 @@
-// main index.js
-
 import { NativeModules } from 'react-native';
 
-const { RnwHello } = NativeModules;
+const { ReactNativeWindowsHello } = NativeModules;
 
-export default RnwHello;
+export default ReactNativeWindowsHello;
