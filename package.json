@@ -6,6 +6,7 @@
   "main": "index.js",
   "files": [
     "windows",
+    "src",
     "index.js"
   ],
   "scripts": {
