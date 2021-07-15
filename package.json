@@ -5,6 +5,7 @@
   "description": "RNW library providing developer with all Windows Hello features",
   "main": "index.js",
   "files": [
+    "windows",
     "index.js"
   ],
   "scripts": {
