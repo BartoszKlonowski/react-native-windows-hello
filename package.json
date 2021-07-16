@@ -1,0 +1,47 @@
+{
+  "name": "react-native-windows-hello",
+  "title": "React Native Windows Hello",
+  "version": "0.0.1",
+  "description": "RNW library providing developer with all Windows Hello features",
+  "main": "index.js",
+  "files": [
+    "windows",
+    "src",
+    "index.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "windows": "react-native run-windows"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/callstack-internal/react-native-windows-hello.git",
+    "baseUrl": "https://github.com/callstack-internal/react-native-windows-hello"
+  },
+  "keywords": [
+    "react-native-windows",
+    "windows",
+    "hello"
+  ],
+  "author": {
+    "name": "Bartosz Klonowski",
+    "email": "Bartosz.Klonowski@callstack.com"
+  },
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-native": ">=0.64.0",
+    "react-native-windows": ">=0.64.0"
+  },
+  "devDependencies": {
+    "@callstack/eslint-config": "^11.0.0",
+    "eslint": "^7.30.0",
+    "jest": "^27.0.6",
+    "prettier": "2.3.2",
+    "react": "^17.0.2",
+    "react-native": "^0.64.2",
+    "react-native-windows": "^0.64.13"
+  }
+}
