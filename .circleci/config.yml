@@ -42,7 +42,7 @@ jobs:
             - v1-deps-
       - run:
           name: "Verify the standards and code quality"
-          command: npx eslint ./src/**
+          command: npx eslint .
 
   verify-cpp:
     executor:
