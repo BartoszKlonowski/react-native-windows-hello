@@ -1,0 +1,109 @@
+version: 2.1
+
+orbs:
+  windows: circleci/windows@2.4.0
+
+jobs:
+  install:
+    executor:
+      name: windows/default
+      shell: powershell.exe
+    steps:
+      - run: git config --global core.autocrlf false
+      - checkout
+      - run:
+          name: "Display environment information"
+          command: npx envinfo
+      - run:
+          name: "Install library dependencies with Yarn"
+          command: yarn install --frozen-lockfile
+      - run:
+          name: "Restore NuGet packages for Components"
+          command: nuget restore .\windows\ReactNativeWindowsHello.sln
+      - run:
+          name: "Restore .NET dependencies"
+          command: msbuild -t:restore .\windows\ReactNativeWindowsHello.sln
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+            - windows/packages
+
+  verify-javascript:
+    executor:
+      name: windows/default
+      shell: powershell.exe
+    steps:
+      - run: git config --global core.autocrlf false
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}
+            - v1-deps-
+      - run:
+          name: "Verify the standards and code quality"
+          command: npx eslint ./src/**
+
+  verify-cpp:
+    executor:
+      name: windows/default
+      shell: powershell.exe
+    steps:
+      - run: git config --global core.autocrlf false
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}
+            - v1-deps-
+      - run:
+          name: "Verify the code formatting"
+          command: npx clang-format --verbose --dry-run -Werror .\windows\ReactNativeWindowsHello\Source\*.hpp
+
+  build-windows-solution:
+    parameters:
+      configuration:
+        type: enum
+        enum: ["debug", "release"]
+      platform:      
+        type: enum
+        enum: ["ARM64", "x64", "ARM", "Win32"]
+    executor:
+      name: windows/default
+      shell: powershell.exe
+    steps:
+      - run: git config --global core.autocrlf false
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}
+            - v1-deps-
+      - run:
+          name: "Build the Windows project"
+          command: msbuild -p:Configuration=<< parameters.configuration >> -p:Platform=<< parameters.platform >> .\\windows\\ReactNativeWindowsHello.sln
+
+
+workflows:
+  version: 2.1
+  build-x64:
+    jobs:
+      - install
+      - verify-javascript:
+          requires:
+            - install
+      - verify-cpp:
+          requires:
+            - install
+      - build-windows-solution:
+          name: build-project-release-x64
+          configuration: "release"
+          platform: "x64"
+          requires:
+            - verify-cpp
+            - verify-javascript
+      - build-windows-solution:
+          name: build-project-debug-x64
+          configuration: "debug"
+          platform: "x64"
+          requires:
+            - verify-cpp
+            - verify-javascript
