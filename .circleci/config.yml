@@ -50,7 +50,11 @@ jobs:
       shell: powershell.exe
     steps:
       - run: git config --global core.autocrlf false
+      - run: git config --global clangFormat.binary node_modules/.bin/clang-format
+      - run: git config --global clangFormat.style file
       - checkout
+      - run: git config clangFormat.binary node_modules/.bin/clang-format
+      - run: git config clangFormat.style file
       - restore_cache:
           keys:
             - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}
