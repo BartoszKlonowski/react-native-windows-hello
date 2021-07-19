@@ -62,7 +62,9 @@ jobs:
             - v1-deps-
       - run:
           name: "Verify the C++ code formatting"
-          command: npx clang-format --verbose --dry-run -Werror .\windows\ReactNativeWindowsHello\Source\*.hpp
+          command: |
+            npx clang-format --verbose --dry-run -Werror .\windows\ReactNativeWindowsHello\Source\*.hpp
+            npx clang-format --verbose --dry-run -Werror .\windows\UnitTests\*.cpp
 
   tests-javascript:
     executor:
@@ -133,6 +135,9 @@ workflows:
       - tests-javascript:
           requires:
             - verify-javascript
+      - tests-cpp:
+          requires:
+            - verify-cpp
       - build-windows-solution:
           name: build-project-release-x64
           configuration: "release"
