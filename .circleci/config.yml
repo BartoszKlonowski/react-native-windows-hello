@@ -98,6 +98,26 @@ jobs:
           name: "Run the unit tests for C++ implementation"
           command: .\windows\Build\UnitTests-Debug-x64\UnitTests.exe
 
+  build-example-application:
+    parameters:
+      configuration:
+        type: enum
+        enum: ["debug", "release"]
+      platform:      
+        type: enum
+        enum: ["ARM64", "x64", "ARM", "Win32"]
+    executor: windows/default
+    steps:
+      - run: git config --global core.autocrlf false
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}
+            - v1-deps-
+      - run:
+          name: "Build the application for Windows OS"
+          command: cd example; npx react-native run-windows --arch << parameters.platform >> --no-deploy --no-launch --no-packager --no-autolink --logging -- << parameters.configuration >>
+
   build-windows-solution:
     parameters:
       configuration:
