@@ -64,6 +64,21 @@ jobs:
           name: "Verify the C++ code formatting"
           command: npx clang-format --verbose --dry-run -Werror .\windows\ReactNativeWindowsHello\Source\*.hpp
 
+  tests-javascript:
+    executor:
+      name: windows/default
+      shell: powershell.exe
+    steps:
+      - run: git config --global core.autocrlf false
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}
+            - v1-deps-
+      - run:
+          name: "Run the unit tests for JavaScript implementation"
+          command: npx jest
+        
   build-windows-solution:
     parameters:
       configuration:
@@ -98,6 +113,9 @@ workflows:
       - verify-cpp:
           requires:
             - install
+      - tests-javascript:
+          requires:
+            - verify-javascript
       - build-windows-solution:
           name: build-project-release-x64
           configuration: "release"
