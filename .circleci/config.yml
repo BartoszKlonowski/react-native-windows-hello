@@ -78,7 +78,24 @@ jobs:
       - run:
           name: "Run the unit tests for JavaScript implementation"
           command: npx jest
-        
+
+  tests-cpp:
+    executor:
+      name: windows/default
+      shell: powershell.exe
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}
+            - v1-deps-
+      - run:
+          name: "Build the GTests project"
+          command: msbuild -p:Configuration=debug -p:Platform=x64 -target:UnitTests .\windows\ReactNativeWindowsHello.sln
+      - run:
+          name: "Run the unit tests for C++ implementation"
+          command: .\windows\Build\UnitTests-Debug-x64\UnitTests.exe
+
   build-windows-solution:
     parameters:
       configuration:
