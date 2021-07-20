@@ -27,6 +27,12 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+
+import FaceRecognitionExample from './screens/FaceRecognitionExample';
+import FingerprintExample from './screens/FingerprintExample';
+
+const Stack = createStackNavigator();
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -54,7 +60,7 @@ const Section = ({children, title}): Node => {
   );
 };
 
-const App: () => Node = () => {
+const HomeScreen: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -62,7 +68,6 @@ const App: () => Node = () => {
   };
 
   return (
-    <NavigationContainer>
       <SafeAreaView style={backgroundStyle}>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <ScrollView
@@ -93,6 +98,23 @@ const App: () => Node = () => {
           </View>
         </ScrollView>
       </SafeAreaView>
+  );
+};
+
+const App: () => Node = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="FaceRecognitionExample"
+          component={FaceRecognitionExample}
+        />
+        <Stack.Screen
+          name="FingerprintExample"
+          component={FingerprintExample}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
