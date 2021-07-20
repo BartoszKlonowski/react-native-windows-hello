@@ -2,12 +2,17 @@
 
 using System.Collections.Generic;
 
+// Namespaces from react-native-windows-hello
+using ReactNativeWindowsHello;
+
 namespace Microsoft.ReactNative.Managed
 {
     internal static class AutolinkedNativeModules
     {
         internal static void RegisterAutolinkedNativeModulePackages(IList<IReactPackageProvider> packageProviders)
         { 
+            // IReactPackageProviders from react-native-windows-hello
+            packageProviders.Add(new ReactNativeWindowsHello.ReactPackageProvider());
         }
     }
 }

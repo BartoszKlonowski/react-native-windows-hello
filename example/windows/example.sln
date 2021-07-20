@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.ReactNative.Manag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.ReactNative.Managed.CodeGen", "..\node_modules\react-native-windows\Microsoft.ReactNative.Managed.CodeGen\Microsoft.ReactNative.Managed.CodeGen.csproj", "{ADED4FBE-887D-4271-AF24-F0823BCE7961}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactNativeWindowsHello", "..\..\windows\ReactNativeWindowsHello\ReactNativeWindowsHello.vcxproj", "{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\node_modules\react-native-windows\JSI\Shared\JSI.Shared.vcxitems*{0cc28589-39e4-4288-b162-97b959f8b843}*SharedItemsImports = 9
@@ -197,6 +199,22 @@ Global
 		{ADED4FBE-887D-4271-AF24-F0823BCE7961}.Release|x64.Build.0 = Release|x64
 		{ADED4FBE-887D-4271-AF24-F0823BCE7961}.Release|x86.ActiveCfg = Release|x86
 		{ADED4FBE-887D-4271-AF24-F0823BCE7961}.Release|x86.Build.0 = Release|x86
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Debug|ARM.ActiveCfg = Debug|ARM
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Debug|ARM.Build.0 = Debug|ARM
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Debug|ARM64.Build.0 = Debug|ARM64
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Debug|x64.ActiveCfg = Debug|x64
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Debug|x64.Build.0 = Debug|x64
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Debug|x86.ActiveCfg = Debug|Win32
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Debug|x86.Build.0 = Debug|Win32
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Release|ARM.ActiveCfg = Release|ARM
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Release|ARM.Build.0 = Release|ARM
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Release|ARM64.ActiveCfg = Release|ARM64
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Release|ARM64.Build.0 = Release|ARM64
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Release|x64.ActiveCfg = Release|x64
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Release|x64.Build.0 = Release|x64
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Release|x86.ActiveCfg = Release|Win32
+		{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
