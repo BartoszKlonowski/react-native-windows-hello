@@ -26,7 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -74,8 +74,11 @@ const App: () => Node = () => {
               backgroundColor: isDarkMode ? Colors.black : Colors.white,
             }}>
             <Section title="Step One">
-              Edit <Text style={styles.highlight}>App.js</Text> to change this
-              screen and then come back to see your edits.
+              <Text>Edit</Text>
+              <Text style={styles.highlight}>App.js</Text>
+              <Text>
+                to change this screen and then come back to see your edits.
+              </Text>
             </Section>
             <Section title="See Your Changes">
               <ReloadInstructions />
@@ -84,7 +87,7 @@ const App: () => Node = () => {
               <DebugInstructions />
             </Section>
             <Section title="Learn More">
-              Read the docs to discover what to do next:
+              <Text>Read the docs to discover what to do next:</Text>
             </Section>
             <LearnMoreLinks />
           </View>
