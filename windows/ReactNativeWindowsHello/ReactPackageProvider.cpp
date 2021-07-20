@@ -5,6 +5,7 @@
 #endif
 
 #include "Source/ReactNativeWindowsHelloModule.hpp"
+#include "Source/Fingerprint/FingerprintNativeModule.hpp"
 
 using namespace winrt::Microsoft::ReactNative;
 
