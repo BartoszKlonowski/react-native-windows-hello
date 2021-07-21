@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
     "lint": "eslint .",
     "windows": "react-native run-windows"
   },
@@ -14,7 +15,7 @@
     "@react-navigation/stack": "^5.14.5",
     "metro-config": "^0.66.2",
     "react": "17.0.1",
-    "react-native": "0.64.0",
+    "react-native": "0.64.2",
     "react-native-reanimated": "^2.2.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.4.0",
@@ -29,7 +30,7 @@
     "eslint": "^7.31.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.64.0",
-    "react-test-renderer": "^17.0.2"
+    "react-test-renderer": "17.0.1"
   },
   "jest": {
     "preset": "react-native"
