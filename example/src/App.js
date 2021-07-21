@@ -16,15 +16,11 @@ import {
   Text,
   useColorScheme,
   View,
+  Button,
+  Linking,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -34,33 +30,7 @@ import FingerprintExample from './screens/FingerprintExample';
 
 const Stack = createStackNavigator();
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const HomeScreen: () => Node = () => {
+const HomeScreen: () => Node = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -73,28 +43,29 @@ const HomeScreen: () => Node = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            <Text>Edit</Text>
-            <Text style={styles.highlight}>App.js</Text>
-            <Text>
-              to change this screen and then come back to see your edits.
-            </Text>
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            <Text>Read the docs to discover what to do next:</Text>
-          </Section>
-          <LearnMoreLinks />
+        <View style={styles.navigationButtonsPanel}>
+          <Button
+            title="Fingerprint"
+            onPress={() => navigation.navigate('FingerprintExample')}
+          />
+          <Button
+            title="Face Recognition"
+            onPress={() => navigation.navigate('FaceRecognitionExample')}
+          />
+        </View>
+        <View style={styles.informationPanel}>
+          <Text>This application is an example of</Text>
+          <Text
+            style={styles.helloLinkText}
+            onPress={() =>
+              Linking.openURL(
+                'https://support.microsoft.com/en-us/windows/sign-in-to-your-microsoft-account-with-windows-hello-or-a-security-key-800a8c01-6b61-49f5-0660-c2159bea4d84',
+              )
+            }>
+            {' '}
+            Windows Hello
+          </Text>
+          <Text> features in a React Native Windows app</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -120,21 +91,17 @@ const App: () => Node = () => {
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  navigationButtonsPanel: {
+    flex: 1,
+    justifyContent: 'space-around',
+    flexDirection: 'row',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  helloLinkText: {
+    color: 'blue',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  informationPanel: {
+    margin: 20,
+    flexDirection: 'row',
   },
 });
 
