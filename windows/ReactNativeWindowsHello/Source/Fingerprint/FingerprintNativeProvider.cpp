@@ -3,40 +3,42 @@
 
 namespace winrt::ReactNativeWindowsHello::Fingerprint
 {
-    const std::string FingerprintNativeProvider::CheckFingerprintAvailability()
+    FingerprintNativeProvider::FingerprintNativeProvider()
     {
-        auto returnMessage = std::string();
+        helper = std::make_unique<WinRtHelper>();
+    }
 
+    std::string FingerprintNativeProvider::FingerprintDeviceStatus()
+    {
+        CheckFingerprintAvailability();
+        return fingerprintDeviceStatus;
+    }
+
+    fire_and_forget FingerprintNativeProvider::CheckFingerprintAvailabilityAsync()
+    {
         try
         {
-            auto ucvAvailability = winrt::Windows::Security::Credentials::UI::UserConsentVerifier::CheckAvailabilityAsync();
-            switch( ucvAvailability.GetResults() )
-            {
-                case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::Available:
-                    returnMessage = "Fingerprint verification is available.";
-                    break;
-                case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::DeviceBusy:
-                    returnMessage = "Biometric device is busy.";
-                    break;
-                case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::DeviceNotPresent:
-                    returnMessage = "No biometric device found.";
-                    break;
-                case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::DisabledByPolicy:
-                    returnMessage = "Biometric verification is disabled by policy.";
-                    break;
-                case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::NotConfiguredForUser:
-                    returnMessage = "The user has no fingerprints registered. Please add a fingerprint to the fingerprint database and try again.";
-                    break;
-                default:
-                    returnMessage = "Fingerprints verification is currently unavailable.";
-                    break;
-            }
+            auto ucvAvailability = co_await winrt::Windows::Security::Credentials::UI::UserConsentVerifier::CheckAvailabilityAsync();
+            this->fingerprintDeviceStatus = helper->UserConsentVerifierAvailabilityToMessage( ucvAvailability );
         }
         catch(const std::exception& e)
         {
-            returnMessage = e.what();
+            fingerprintDeviceStatus = e.what();
+        }
+    }
+
+    std::string FingerprintNativeProvider::CheckFingerprintAvailability()
+    {
+        try
+        {
+            auto ucvAvailability = winrt::Windows::Security::Credentials::UI::UserConsentVerifier::CheckAvailabilityAsync().get();
+            this->fingerprintDeviceStatus = helper->UserConsentVerifierAvailabilityToMessage( ucvAvailability );
+        }
+        catch( const std::exception& e )
+        {
+            fingerprintDeviceStatus = e.what();
         }
 
-        return returnMessage;
+        return fingerprintDeviceStatus;
     }
 }
