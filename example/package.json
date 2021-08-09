@@ -19,7 +19,7 @@
     "react-native-reanimated": "^2.2.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.4.0",
-    "react-native-windows": "^0.64.0-0",
+    "react-native-windows": "0.64.14",
     "react-native-windows-hello": "file:.."
   },
   "devDependencies": {
