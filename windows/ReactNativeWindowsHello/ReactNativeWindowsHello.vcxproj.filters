@@ -7,11 +7,16 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="ReactPackageProvider.cpp" />
+    <ClCompile Include="Source\Fingerprint\FingerprintNativeProvider.cpp" />
+    <ClCompile Include="Source\Fingerprint\WinRTHelper\WinRTHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="ReactPackageProvider.h" />
     <ClInclude Include="Source\ReactNativeWindowsHelloModule.hpp" />
+    <ClInclude Include="Source\Fingerprint\FingerprintNativeModule.hpp" />
+    <ClInclude Include="Source\Fingerprint\FingerprintNativeProvider.hpp" />
+    <ClInclude Include="Source\Fingerprint\WinRTHelper\WinRTHelper.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />
