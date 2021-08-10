@@ -1,5 +1,13 @@
 import * as React from 'react';
-import {ScrollView, View, Text, Button, StyleSheet} from 'react-native';
+import {
+  ScrollView,
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  NativeModules,
+  Alert,
+} from 'react-native';
 
 function FingerprintExample({navigation}) {
   return (
@@ -13,6 +21,19 @@ function FingerprintExample({navigation}) {
       </View>
       <View style={styles.exampleContent}>
         <Text>Fingerprint Example</Text>
+        <Button
+          title={'Check availability'}
+          onPress={() => {
+            NativeModules.FingerprintNativeModule.checkAvailability()
+              .then(result => {
+                Alert.alert(`SUCCESS!`, `${result}`);
+                return result;
+              })
+              .catch(error => {
+                Alert.alert(`ERROR!`, `${error.message}`);
+              });
+          }}
+        />
       </View>
     </ScrollView>
   );
