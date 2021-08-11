@@ -10,8 +10,38 @@ namespace winrt::ReactNativeWindowsHello::Fingerprint
 
     std::string FingerprintNativeProvider::FingerprintDeviceStatus()
     {
-        CheckFingerprintAvailability();
         return fingerprintDeviceStatus;
+    }
+
+    std::string FingerprintNativeProvider::FingerprintScanStatus()
+    {
+        return fingerprintScanStatus;
+    }
+
+    std::string FingerprintNativeProvider::CheckUserVerification()
+    {
+        winrt::Windows::Security::Credentials::UI::UserConsentVerificationResult consentResult = winrt::Windows::Security::Credentials::UI::UserConsentVerifier::RequestVerificationAsync( L"Please confirm your identity by fingerprint scan..." ).get();
+
+        switch(consentResult)
+        {
+            case winrt::Windows::Security::Credentials::UI::UserConsentVerificationResult::Verified:
+                fingerprintScanStatus = "UserVerified";
+                break;
+
+            case winrt::Windows::Security::Credentials::UI::UserConsentVerificationResult::DeviceNotPresent:
+                fingerprintScanStatus = "Device not present";
+                break;
+
+            case winrt::Windows::Security::Credentials::UI::UserConsentVerificationResult::Canceled:
+                fingerprintScanStatus = "Verification was canceled";
+                break;
+
+            default:
+                fingerprintScanStatus = "Unrecognized status";
+                break;
+        }
+
+        return fingerprintScanStatus;
     }
 
     fire_and_forget FingerprintNativeProvider::CheckFingerprintAvailabilityAsync()

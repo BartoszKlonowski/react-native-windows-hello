@@ -17,7 +17,15 @@ namespace winrt::ReactNativeWindowsHello::Fingerprint
         REACT_METHOD( CheckAvailability, L"checkAvailability" );
         void CheckAvailability( React::ReactPromise<React::JSValue>&& result ) noexcept
         {
+            provider.CheckFingerprintAvailability();
             result.Resolve( React::JSValue( provider.FingerprintDeviceStatus() ) );
+        }
+
+        REACT_METHOD( RequestScan, L"requestScan" );
+        void RequestScan( React::ReactPromise<React::JSValue>&& result ) noexcept
+        {
+            provider.CheckUserVerification();
+            result.Resolve( React::JSValue( provider.FingerprintScanStatus() ) );
         }
 
     private:

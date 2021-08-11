@@ -12,12 +12,17 @@ namespace winrt::ReactNativeWindowsHello::Fingerprint
         FingerprintNativeProvider();
 
         std::string FingerprintDeviceStatus();
+        std::string FingerprintScanStatus();
 
-    private:
+        std::string CheckUserVerification();
+
         fire_and_forget CheckFingerprintAvailabilityAsync();
+
         std::string CheckFingerprintAvailability();
 
+    private:
         std::string fingerprintDeviceStatus;
+        std::string fingerprintScanStatus;
 
         std::unique_ptr<WinRtHelper> helper;
     };
