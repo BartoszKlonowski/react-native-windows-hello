@@ -1,5 +1,13 @@
 import * as React from 'react';
-import {ScrollView, View, Text, Button, StyleSheet} from 'react-native';
+import {
+  ScrollView,
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  NativeModules,
+  Alert,
+} from 'react-native';
 
 function FingerprintExample({navigation}) {
   return (
@@ -13,6 +21,32 @@ function FingerprintExample({navigation}) {
       </View>
       <View style={styles.exampleContent}>
         <Text>Fingerprint Example</Text>
+        <Button
+          title={'Check availability'}
+          onPress={() => {
+            NativeModules.FingerprintNativeModule.checkAvailability()
+              .then(result => {
+                Alert.alert(`SUCCESS!`, `${result}`);
+                return result;
+              })
+              .catch(error => {
+                Alert.alert(`ERROR!`, `${error.message}`);
+              });
+          }}
+        />
+        <Button
+          title={'Check scan'}
+          onPress={() => {
+            NativeModules.FingerprintNativeModule.requestScan()
+              .then(result => {
+                Alert.alert(`SUCCESS!`, `${result}`);
+                return result;
+              })
+              .catch(error => {
+                Alert.alert(`ERROR!`, `${error.message}`);
+              });
+          }}
+        />
       </View>
     </ScrollView>
   );
@@ -26,6 +60,7 @@ const styles = StyleSheet.create({
   },
   exampleContent: {
     flex: 1,
+    height: 200,
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',

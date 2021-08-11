@@ -35,7 +35,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mso", "..\node_modules\reac
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Include", "..\node_modules\react-native-windows\include\Include.vcxitems", "{EF074BA1-2D54-4D49-A28E-5E040B47CD2E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactNativeWindowsHello", "..\..\windows\ReactNativeWindowsHello\ReactNativeWindowsHello.vcxproj", "{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactNativeWindowsHello", "..\node_modules\react-native-windows-hello\windows\ReactNativeWindowsHello\ReactNativeWindowsHello.vcxproj", "{82BF2B2C-EDA5-47CA-A9F5-56BA622A15EA}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
