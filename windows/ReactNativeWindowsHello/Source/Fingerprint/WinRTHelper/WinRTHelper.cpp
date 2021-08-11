@@ -9,22 +9,39 @@ namespace winrt::ReactNativeWindowsHello::Fingerprint
         {
             case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::Available:
                 return "Fingerprint verification is available.";
-                break;
+
             case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::DeviceBusy:
                 return "Biometric device is busy.";
-                break;
+
             case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::DeviceNotPresent:
                 return "No biometric device found.";
-                break;
+
             case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::DisabledByPolicy:
                 return "Biometric verification is disabled by policy.";
-                break;
+
             case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::NotConfiguredForUser:
                 return "The user has no fingerprints registered. Please add a fingerprint to the fingerprint database and try again.";
-                break;
+
             default:
                 return "Fingerprints verification is currently unavailable.";
-                break;
+        }
+    }
+
+    std::string WinRtHelper::UserConsentVerificationResultToMessage( const winrt::Windows::Security::Credentials::UI::UserConsentVerificationResult& verificationResult )
+    {
+        switch( verificationResult )
+        {
+            case winrt::Windows::Security::Credentials::UI::UserConsentVerificationResult::Verified:
+                return "UserVerified";
+
+            case winrt::Windows::Security::Credentials::UI::UserConsentVerificationResult::DeviceNotPresent:
+                return "Device not present";
+
+            case winrt::Windows::Security::Credentials::UI::UserConsentVerificationResult::Canceled:
+                return "Verification was canceled";
+
+            default:
+                return "Unrecognized status";
         }
     }
 }
