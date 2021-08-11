@@ -34,6 +34,19 @@ function FingerprintExample({navigation}) {
               });
           }}
         />
+        <Button
+          title={'Check scan'}
+          onPress={() => {
+            NativeModules.FingerprintNativeModule.requestScan()
+              .then(result => {
+                Alert.alert(`SUCCESS!`, `${result}`);
+                return result;
+              })
+              .catch(error => {
+                Alert.alert(`ERROR!`, `${error.message}`);
+              });
+          }}
+        />
       </View>
     </ScrollView>
   );
@@ -47,6 +60,7 @@ const styles = StyleSheet.create({
   },
   exampleContent: {
     flex: 1,
+    height: 200,
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
