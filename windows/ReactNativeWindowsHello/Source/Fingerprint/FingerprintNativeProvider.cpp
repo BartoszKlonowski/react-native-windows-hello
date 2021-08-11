@@ -27,6 +27,13 @@ namespace winrt::ReactNativeWindowsHello::Fingerprint
         return fingerprintScanStatus;
     }
 
+    fire_and_forget FingerprintNativeProvider::CheckUserVerificationAsync()
+    {
+        const winrt::hstring scanPromptMessage = L"Please confirm your identity by fingerprint scan...";
+        auto&& consentResult = co_await winrt::Windows::Security::Credentials::UI::UserConsentVerifier::RequestVerificationAsync( scanPromptMessage );
+        fingerprintScanStatus = helper->UserConsentVerificationResultToMessage( consentResult );
+    }
+
     fire_and_forget FingerprintNativeProvider::CheckFingerprintAvailabilityAsync()
     {
         try

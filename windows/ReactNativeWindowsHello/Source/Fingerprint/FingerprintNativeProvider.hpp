@@ -16,6 +16,8 @@ namespace winrt::ReactNativeWindowsHello::Fingerprint
 
         std::string CheckUserVerification();
 
+        fire_and_forget CheckUserVerificationAsync();
+
         fire_and_forget CheckFingerprintAvailabilityAsync();
 
         std::string CheckFingerprintAvailability();
