@@ -18,24 +18,19 @@ jobs:
           name: "Install library dependencies with Yarn"
           command: |
             yarn install --frozen-lockfile
-            cd example; yarn install --frozen-lockfile
       - run:
           name: "Restore NuGet packages for Components"
           command: |
             nuget restore .\windows\ReactNativeWindowsHello.sln
-            nuget restore .\example\windows\example.sln
       - run:
           name: "Restore .NET dependencies"
           command: |
             msbuild -t:restore .\windows\ReactNativeWindowsHello.sln
-            msbuild -t:restore .\example\windows\example.sln
       - save_cache:
-          key: v2-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}-{{ checksum "example/package.json" }}
+          key: v2-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}
           paths:
             - node_modules
             - windows/packages
-            - example/node_modules
-            - example/windows/packages
 
   verify-javascript:
     executor:
@@ -46,7 +41,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v2-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}-{{ checksum "example/package.json" }}
+            - v2-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}
             - v2-deps-
       - run:
           name: "Verify the JS code formatting"
@@ -66,7 +61,7 @@ jobs:
             git config clangFormat.style file
       - restore_cache:
           keys:
-            - v2-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}-{{ checksum "example/package.json" }}
+            - v2-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}
             - v2-deps-
       - run:
           name: "Verify the C++ code formatting"
@@ -83,7 +78,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v2-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}-{{ checksum "example/package.json" }}
+            - v2-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}
             - v2-deps-
       - run:
           name: "Run the unit tests for JavaScript implementation"
@@ -97,7 +92,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v2-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}-{{ checksum "example/package.json" }}
+            - v2-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}
             - v2-deps-
       - run:
           name: "Build the GTests project"
@@ -142,7 +137,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v2-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}-{{ checksum "example/package.json" }}
+            - v2-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}
             - v2-deps-
       - run:
           name: "Build the Windows project"
