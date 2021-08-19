@@ -180,10 +180,3 @@ workflows:
           requires:
             - verify-cpp
             - verify-javascript
-      - build-example-application:
-          name: build-example-release-x64
-          configuration: "release"
-          platform: "x64"
-          requires:
-            - build-project-debug-x64
-            - build-project-release-x64
