@@ -17,8 +17,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/callstack-internal/react-native-windows-hello.git",
-    "baseUrl": "https://github.com/callstack-internal/react-native-windows-hello"
+    "url": "git+https://github.com/callstack/react-native-windows-hello.git",
+    "baseUrl": "https://github.com/callstack/react-native-windows-hello"
   },
   "keywords": [
     "react-native-windows",
