@@ -34,8 +34,8 @@
   "readmeFilename": "README.md",
   "peerDependencies": {
     "react": ">=17.0.0",
-    "react-native": ">=0.64.0",
-    "react-native-windows": ">=0.64.0"
+    "react-native": ">=0.65.0",
+    "react-native-windows": ">=0.65.0"
   },
   "devDependencies": {
     "@callstack/eslint-config": "^11.0.0",
@@ -44,7 +44,7 @@
     "jest": "^25.1.0",
     "prettier": "2.3.2",
     "react": "^17.0.2",
-    "react-native": "^0.64.2",
-    "react-native-windows": "^0.64.13"
+    "react-native": "0.65.0",
+    "react-native-windows": "0.65.4"
   }
 }
