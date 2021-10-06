@@ -1,12 +1,12 @@
 #pragma once
 
 #include "NativeModules.h"
-#include "FingerprintNativeProvider.hpp"
+#include "SignInNativeProvider.hpp"
 
-namespace winrt::ReactNativeWindowsHello::Fingerprint
+namespace winrt::ReactNativeWindowsHello::SignIn
 {
-    REACT_MODULE( FingerprintNativeModule, L"FingerprintNativeModule" );
-    struct FingerprintNativeModule
+    REACT_MODULE( SignInNativeModule, L"SignIn" );
+    struct SignInNativeModule
     {
         REACT_INIT( Initialize );
         void Initialize( const Microsoft::ReactNative::ReactContext& reactContext ) noexcept
@@ -17,20 +17,20 @@ namespace winrt::ReactNativeWindowsHello::Fingerprint
         REACT_METHOD( CheckAvailability, L"checkAvailability" );
         void CheckAvailability( React::ReactPromise<React::JSValue>&& result ) noexcept
         {
-            provider.CheckFingerprintAvailability();
-            result.Resolve( React::JSValue( provider.FingerprintDeviceStatus() ) );
+            provider.CheckSignInAvailability();
+            result.Resolve( React::JSValue( provider.SignInDeviceStatus() ) );
         }
 
         REACT_METHOD( RequestScan, L"requestScan" );
         void RequestScan( React::ReactPromise<React::JSValue>&& result ) noexcept
         {
             provider.CheckUserVerification();
-            result.Resolve( React::JSValue( provider.FingerprintScanStatus() ) );
+            result.Resolve( React::JSValue( provider.SignInScanStatus() ) );
         }
 
     private:
         Microsoft::ReactNative::ReactContext reactContext{ nullptr };
 
-        FingerprintNativeProvider provider;
+        SignInNativeProvider provider;
     };
 }

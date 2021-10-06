@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace winrt::ReactNativeWindowsHello::Fingerprint
+namespace winrt::ReactNativeWindowsHello::SignIn
 {
     class WinRtHelper
     {

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "WinRTHelper.hpp"
 
-namespace winrt::ReactNativeWindowsHello::Fingerprint
+namespace winrt::ReactNativeWindowsHello::SignIn
 {
     std::string WinRtHelper::UserConsentVerifierAvailabilityToMessage( const Windows::Security::Credentials::UI::UserConsentVerifierAvailability& availability )
     {
