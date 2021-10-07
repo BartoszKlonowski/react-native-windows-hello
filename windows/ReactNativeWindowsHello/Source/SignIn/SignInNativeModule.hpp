@@ -17,27 +17,41 @@ namespace winrt::ReactNativeWindowsHello::SignIn
         REACT_METHOD( CheckAvailabilityPromise, L"checkAvailabilityPromise" );
         void CheckAvailabilityPromise( React::ReactPromise<React::JSValue>&& result ) noexcept
         {
-            provider.CheckSignInAvailability();
-            result.Resolve( React::JSValue( provider.SignInDeviceStatus() ) );
+            if( provider.CheckSignInAvailability() == Windows::Security::Credentials::UI::UserConsentVerifierAvailability::Available )
+            {
+                result.Resolve( React::JSValue( provider.SignInDeviceStatus() ) );
+            }
+            else
+            {
+                result.Reject( provider.SignInDeviceStatus().c_str() );
+            }
         }
 
         REACT_METHOD( RequestScanPromise, L"requestScanPromise" );
         void RequestScanPromise( React::ReactPromise<React::JSValue>&& result ) noexcept
         {
-            provider.CheckUserVerification();
-            result.Resolve( React::JSValue( provider.SignInScanStatus() ) );
+            if( provider.CheckUserVerification() == Windows::Security::Credentials::UI::UserConsentVerificationResult::Verified )
+            {
+                result.Resolve( React::JSValue( provider.SignInScanStatus() ) );
+            }
+            else
+            {
+                result.Reject( provider.SignInScanStatus().c_str() );
+            }
         }
 
         REACT_METHOD( CheckAvailabilityCallback, L"checkAvailabilityCallback" );
         void CheckAvailabilityCallback( std::function<void( winrt::hstring )> biometricDeviceAvailabilityCallback ) noexcept
         {
-            biometricDeviceAvailabilityCallback( winrt::to_hstring( provider.CheckSignInAvailability() ) );
+            provider.CheckSignInAvailability();
+            biometricDeviceAvailabilityCallback( winrt::to_hstring( provider.SignInDeviceStatus() ) );
         }
 
         REACT_METHOD( RequestScanCallback, L"requestScanCallback" );
         void RequestScanCallback( std::function<void( winrt::hstring )> biometricDeviceAvailabilityCallback ) noexcept
         {
-            biometricDeviceAvailabilityCallback( winrt::to_hstring( provider.CheckUserVerification() ) );
+            provider.CheckUserVerification();
+            biometricDeviceAvailabilityCallback( winrt::to_hstring( provider.SignInScanStatus() ) );
         }
 
         REACT_METHOD( CheckAvailabilityAsync, L"checkAvailabilityAsync" );

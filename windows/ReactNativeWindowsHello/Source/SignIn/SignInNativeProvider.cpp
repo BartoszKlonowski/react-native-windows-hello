@@ -18,13 +18,12 @@ namespace winrt::ReactNativeWindowsHello::SignIn
         return signInScanStatus;
     }
 
-    std::string SignInNativeProvider::CheckUserVerification()
+    Windows::Security::Credentials::UI::UserConsentVerificationResult SignInNativeProvider::CheckUserVerification()
     {
         const winrt::hstring scanPromptMessage = L"Please confirm your identity by SignIn scan...";
         auto&& consentResult = winrt::Windows::Security::Credentials::UI::UserConsentVerifier::RequestVerificationAsync( scanPromptMessage ).get();
         signInScanStatus = helper->UserConsentVerificationResultToMessage( consentResult );
-
-        return signInScanStatus;
+        return consentResult;
     }
 
     fire_and_forget SignInNativeProvider::CheckUserVerificationAsync()
@@ -47,11 +46,13 @@ namespace winrt::ReactNativeWindowsHello::SignIn
         }
     }
 
-    std::string SignInNativeProvider::CheckSignInAvailability()
+    Windows::Security::Credentials::UI::UserConsentVerifierAvailability SignInNativeProvider::CheckSignInAvailability()
     {
+        auto ucvAvailability = Windows::Security::Credentials::UI::UserConsentVerifierAvailability::NotConfiguredForUser;
+
         try
         {
-            auto ucvAvailability = winrt::Windows::Security::Credentials::UI::UserConsentVerifier::CheckAvailabilityAsync().get();
+            ucvAvailability = winrt::Windows::Security::Credentials::UI::UserConsentVerifier::CheckAvailabilityAsync().get();
             this->signInDeviceStatus = helper->UserConsentVerifierAvailabilityToMessage( ucvAvailability );
         }
         catch( const std::exception& e )
@@ -59,6 +60,6 @@ namespace winrt::ReactNativeWindowsHello::SignIn
             signInDeviceStatus = e.what();
         }
 
-        return signInDeviceStatus;
+        return ucvAvailability;
     }
 }

@@ -14,13 +14,11 @@ namespace winrt::ReactNativeWindowsHello::SignIn
         std::string SignInDeviceStatus();
         std::string SignInScanStatus();
 
-        std::string CheckUserVerification();
+        Windows::Security::Credentials::UI::UserConsentVerificationResult CheckUserVerification();
+        Windows::Security::Credentials::UI::UserConsentVerifierAvailability CheckSignInAvailability();
 
         fire_and_forget CheckUserVerificationAsync();
-
         fire_and_forget CheckSignInAvailabilityAsync();
-
-        std::string CheckSignInAvailability();
 
     private:
         std::string signInDeviceStatus;
