@@ -14,6 +14,18 @@ namespace winrt::ReactNativeWindowsHello::SignIn
             this->reactContext = reactContext;
         }
 
+        REACT_METHOD( GetLastAvailabilityCheckResult, L"getLastAvailabilityCheckResult" );
+        void GetLastAvailabilityCheckResult( std::function<void( winrt::hstring )> lastAvailabilityCheckCallback ) noexcept
+        {
+            lastAvailabilityCheckCallback( winrt::to_hstring( provider.SignInDeviceStatus() ) );
+        }
+
+        REACT_METHOD( GetLastScanResult, L"getLastScanResult" );
+        void GetLastScanResult( std::function<void( winrt::hstring )> lastBiometricScanResultCallback ) noexcept
+        {
+            lastBiometricScanResultCallback( winrt::to_hstring( provider.SignInScanStatus() ) );
+        }
+
         REACT_METHOD( CheckAvailabilityPromise, L"checkAvailabilityPromise" );
         void CheckAvailabilityPromise( React::ReactPromise<React::JSValue>&& result ) noexcept
         {
@@ -48,24 +60,24 @@ namespace winrt::ReactNativeWindowsHello::SignIn
         }
 
         REACT_METHOD( RequestScanCallback, L"requestScanCallback" );
-        void RequestScanCallback( std::function<void( winrt::hstring )> biometricDeviceAvailabilityCallback ) noexcept
+        void RequestScanCallback( std::function<void( winrt::hstring )> biometricScanCallback ) noexcept
         {
             provider.CheckUserVerification();
-            biometricDeviceAvailabilityCallback( winrt::to_hstring( provider.SignInScanStatus() ) );
+            biometricScanCallback( winrt::to_hstring( provider.SignInScanStatus() ) );
         }
 
         REACT_METHOD( CheckAvailabilityAsync, L"checkAvailabilityAsync" );
-        void CheckAvailabilityAsync( React::ReactPromise<React::JSValue>&& result ) noexcept
+        void CheckAvailabilityAsync( std::function<void(void)> biometricDeviceAvailabilityCallback ) noexcept
         {
             provider.CheckSignInAvailabilityAsync();
-            result.Resolve( React::JSValue( provider.SignInDeviceStatus() ) );
+            biometricDeviceAvailabilityCallback();
         }
 
         REACT_METHOD( RequestScanAsync, L"requestScanAsync" );
-        void RequestScanAsync( React::ReactPromise<React::JSValue>&& result ) noexcept
+        void RequestScanAsync( std::function<void(void)> biometricScanCallback ) noexcept
         {
             provider.CheckUserVerificationAsync();
-            result.Resolve( React::JSValue( provider.SignInScanStatus() ) );
+            biometricScanCallback();
         }
 
     private:
