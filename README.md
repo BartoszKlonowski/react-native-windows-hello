@@ -16,6 +16,13 @@
     </a>
 </p>
 
+
+<p align="center">
+    The following library allows you to use all features of <a href="https://support.microsoft.com/en-us/windows/sign-in-to-your-microsoft-account-with-windows-hello-or-a-security-key-800a8c01-6b61-49f5-0660-c2159bea4d84#WindowsVersion=Windows_10">Windows Hello</a> functionality. This includes the signing-in options and passport.
+    This library is a set of native methods providing easy API to fetch the device availability, sign in using your biometrics.
+    <img src=".github/Resources/RNW-Hello-FullExample.gif"/>
+</p>
+
 ---
 
 ## Made with ❤️ at Callstack
