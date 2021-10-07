@@ -32,7 +32,7 @@ namespace winrt::ReactNativeWindowsHello::SignIn
         switch( verificationResult )
         {
             case winrt::Windows::Security::Credentials::UI::UserConsentVerificationResult::Verified:
-                return "UserVerified";
+                return "User was verified successfully";
 
             case winrt::Windows::Security::Credentials::UI::UserConsentVerificationResult::DeviceNotPresent:
                 return "Device not present";
