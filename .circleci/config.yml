@@ -89,6 +89,7 @@ jobs:
       name: windows/default
       shell: powershell.exe
     steps:
+      - run: git config --global core.autocrlf false
       - checkout
       - restore_cache:
           keys:
