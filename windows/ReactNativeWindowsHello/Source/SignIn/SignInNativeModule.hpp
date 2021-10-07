@@ -28,6 +28,20 @@ namespace winrt::ReactNativeWindowsHello::SignIn
             result.Resolve( React::JSValue( provider.SignInScanStatus() ) );
         }
 
+        REACT_METHOD( CheckAvailabilityAsync, L"checkAvailabilityAsync" );
+        void CheckAvailabilityAsync( React::ReactPromise<React::JSValue>&& result ) noexcept
+        {
+            provider.CheckSignInAvailabilityAsync();
+            result.Resolve( React::JSValue( provider.SignInDeviceStatus() ) );
+        }
+
+        REACT_METHOD( RequestScanAsync, L"requestScanAsync" );
+        void RequestScanAsync( React::ReactPromise<React::JSValue>&& result ) noexcept
+        {
+            provider.CheckUserVerificationAsync();
+            result.Resolve( React::JSValue( provider.SignInScanStatus() ) );
+        }
+
     private:
         Microsoft::ReactNative::ReactContext reactContext{ nullptr };
 
