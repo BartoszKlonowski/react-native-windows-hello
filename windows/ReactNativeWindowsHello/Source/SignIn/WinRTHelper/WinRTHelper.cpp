@@ -8,7 +8,7 @@ namespace winrt::ReactNativeWindowsHello::SignIn
         switch( availability )
         {
             case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::Available:
-                return "Fingerprint verification is available.";
+                return "Biometric verification is available.";
 
             case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::DeviceBusy:
                 return "Biometric device is busy.";
@@ -20,10 +20,10 @@ namespace winrt::ReactNativeWindowsHello::SignIn
                 return "Biometric verification is disabled by policy.";
 
             case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::NotConfiguredForUser:
-                return "The user has no fingerprints registered. Please add a fingerprint to the fingerprint database and try again.";
+                return "The user has no biometrics registered. Please add a biometric to the biometrics database and try again.";
 
             default:
-                return "Fingerprints verification is currently unavailable.";
+                return "Biometrics verification is currently unavailable.";
         }
     }
 
