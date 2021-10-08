@@ -25,6 +25,27 @@
 
 ---
 
+## Contributing
+
+If you would like to contribute to the *react-native-windows-hello* project, you are more than welcome!
+You can do this by:
+* Create an [Issue](https://github.com/callstack/react-native-windows-hello/issues/new) and let the author handle it
+<br/>Each issue created in the [Issues section](https://github.com/callstack/react-native-windows-hello/issues) gives a chance of improving the project and make it even more useful.
+* Create the [Pull Request](https://github.com/callstack/react-native-windows-hello/compare) with the desired changes
+<br/>When creating the pull request please remember to describe changes you made and how to test them. A short demo of any kind is very appreciated.
+
+### Setting up the project
+
+To start developing you need to fork this project, and clone your fork.
+<br/>After that you can:
+* `yarn install`
+* Implement changes (mostly in *windows/ReactNativeWindowsHello/Source* directory)
+* After implementation you can check the build by running:
+<br/>`msbuild -p:Configuration=Debug -p:Platform=x64 .\windows\ReactNativeWindowsHello.sln`
+<br/>Or launch the build through the Visual Studio.
+
+---
+
 ## Made with ❤️ at Callstack
 
 `react-native-windows-hello` is an open source project and will always remain free to use. If you think it's cool, please star it 🌟. [Callstack](https://callstack.com/) is a group of React and React Native geeks, contact us at [hello@callstack.com](mailto:hello@callstack.com) if you need any help with these or just want to say hi!
