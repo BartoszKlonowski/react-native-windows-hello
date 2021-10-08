@@ -1,14 +1,14 @@
 #include "pch.h"
 #include "WinRTHelper.hpp"
 
-namespace winrt::ReactNativeWindowsHello::Fingerprint
+namespace winrt::ReactNativeWindowsHello::SignIn
 {
     std::string WinRtHelper::UserConsentVerifierAvailabilityToMessage( const Windows::Security::Credentials::UI::UserConsentVerifierAvailability& availability )
     {
         switch( availability )
         {
             case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::Available:
-                return "Fingerprint verification is available.";
+                return "Biometric verification is available.";
 
             case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::DeviceBusy:
                 return "Biometric device is busy.";
@@ -20,10 +20,10 @@ namespace winrt::ReactNativeWindowsHello::Fingerprint
                 return "Biometric verification is disabled by policy.";
 
             case Windows::Security::Credentials::UI::UserConsentVerifierAvailability::NotConfiguredForUser:
-                return "The user has no fingerprints registered. Please add a fingerprint to the fingerprint database and try again.";
+                return "The user has no biometrics registered. Please add a biometric to the biometrics database and try again.";
 
             default:
-                return "Fingerprints verification is currently unavailable.";
+                return "Biometrics verification is currently unavailable.";
         }
     }
 
@@ -32,7 +32,7 @@ namespace winrt::ReactNativeWindowsHello::Fingerprint
         switch( verificationResult )
         {
             case winrt::Windows::Security::Credentials::UI::UserConsentVerificationResult::Verified:
-                return "UserVerified";
+                return "User was verified successfully";
 
             case winrt::Windows::Security::Credentials::UI::UserConsentVerificationResult::DeviceNotPresent:
                 return "Device not present";
