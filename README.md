@@ -51,6 +51,23 @@ Check out the [example project](example) for more examples.
 
 ---
 
+## API
+
+The following library provides you with the native modules exposing the following methods:
+
+| Method | Description | Returns |
+| ------ | - | - |
+| `SignIn`<br/>`.checkAvailabilityPromise` | Gets the status of biometric device on a user's machine and returns a promise with the result | `Promise` with `String` |
+| `SignIn`<br/>`.requestScanPromise` | Displays the biometric scan prompt as a popup and returns a promise after user's actions | `Promise` with `String` |
+| `SignIn`<br/>`.checkAvailabilityCallback` | Gets the status of biometric device on a user's machine and launches a callback with the result as a callback's parameter | Callback(`String`) |
+| `SignIn`<br/>`.requestScanCallback` | Displays the biometric scan prompt as a popup and returns a result through a callback | Callback(`String`) |
+| `SignIn`<br/>`.checkAvailabilityAsync` | Gets the status of biometric device on a user's machine and returns an empty callback, which acts as a notification about launching the request. The result of that action should be then manually fetched by running `getLastAvailabilityCheckResult` | Callback() |
+| `SignIn`<br/>`.requestScanAsync` | Displays the biometric scan prompt as a popup and returns an empty callback after user's actions, which acts as a notification about launching the request. The result of that action should be then manually fetched by running `getLastScanResult` | Callback() |
+| `SignIn`<br/>`.getLastScanResult` | Returns a promise with last result of a biometric device status | `Promise` with `String` |
+| `SignIn`<br/>`.getLastAvailabilityCheckResult` | Returns a promise with last result of a biometric signing in result | `Promise` with `String` |
+
+---
+
 ## Contributing
 
 If you would like to contribute to the *react-native-windows-hello* project, you are more than welcome!
