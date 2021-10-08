@@ -25,6 +25,32 @@
 
 ---
 
+## Installation & Usage
+
+To install this module `cd` to your project directory and enter the following command:
+```
+yarn add react-native-windows-hello
+```
+or
+```
+npm install react-native-windows-hello --save
+```
+
+After having it installed you can call all the Windows Hello methods through the `NativeModules`, so the usage would be:
+```javascript
+NativeModules.SignIn.requestScanPromise()
+  .then(result => {
+    Alert.alert("SUCCESS", `${result}`);
+  })
+  .catch(error => {
+    Alert.alert("ERROR:", `${error}`);
+  });
+```
+
+Check out the [example project](example) for more examples.
+
+---
+
 ## Contributing
 
 If you would like to contribute to the *react-native-windows-hello* project, you are more than welcome!
