@@ -3,7 +3,7 @@
 #include "NativeModules.h"
 #include "SignInNativeProvider.hpp"
 
-namespace winrt::ReactNativeWindowsHello::SignIn
+namespace winrt::ReactNativeWindowsHello
 {
     REACT_MODULE( SignInNativeModule, L"SignIn" );
     struct SignInNativeModule
