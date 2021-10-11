@@ -138,7 +138,7 @@
     <ClInclude Include="ReactPackageProvider.h">
       <DependentUpon>ReactPackageProvider.idl</DependentUpon>
     </ClInclude>
-    <ClInclude Include="Source\SignIn\SignInNativeModule.hpp" />
+    <ClInclude Include="Source\SignInNativeModule.hpp" />
     <ClInclude Include="Source\SignIn\SignInNativeProvider.hpp" />
     <ClInclude Include="Source\SignIn\WinRTHelper\WinRTHelper.hpp" />
     <ClInclude Include="pch.h" />

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "NativeModules.h"
-#include "SignInNativeProvider.hpp"
+#include "SignIn/SignInNativeProvider.hpp"
 
 namespace winrt::ReactNativeWindowsHello
 {
