@@ -4,7 +4,6 @@
 #include "ReactPackageProvider.g.cpp"
 #endif
 
-#include "Source/ReactNativeWindowsHelloModule.hpp"
 #include "Source/SignIn/SignInNativeModule.hpp"
 
 using namespace winrt::Microsoft::ReactNative;

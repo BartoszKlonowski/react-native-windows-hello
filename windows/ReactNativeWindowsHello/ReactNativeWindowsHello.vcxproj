@@ -141,7 +141,6 @@
     <ClInclude Include="Source\SignIn\SignInNativeModule.hpp" />
     <ClInclude Include="Source\SignIn\SignInNativeProvider.hpp" />
     <ClInclude Include="Source\SignIn\WinRTHelper\WinRTHelper.hpp" />
-    <ClInclude Include="Source\ReactNativeWindowsHelloModule.hpp" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
