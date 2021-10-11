@@ -13,8 +13,7 @@
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="ReactPackageProvider.h" />
-    <ClInclude Include="Source\ReactNativeWindowsHelloModule.hpp" />
-    <ClInclude Include="Source\SignIn\SignInNativeModule.hpp" />
+    <ClInclude Include="Source\SignInNativeModule.hpp" />
     <ClInclude Include="Source\SignIn\SignInNativeProvider.hpp" />
     <ClInclude Include="Source\SignIn\WinRTHelper\WinRTHelper.hpp" />
   </ItemGroup>

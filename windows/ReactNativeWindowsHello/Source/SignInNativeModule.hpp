@@ -1,9 +1,9 @@
 #pragma once
 
 #include "NativeModules.h"
-#include "SignInNativeProvider.hpp"
+#include "SignIn/SignInNativeProvider.hpp"
 
-namespace winrt::ReactNativeWindowsHello::SignIn
+namespace winrt::ReactNativeWindowsHello
 {
     REACT_MODULE( SignInNativeModule, L"SignIn" );
     struct SignInNativeModule
@@ -83,6 +83,6 @@ namespace winrt::ReactNativeWindowsHello::SignIn
     private:
         Microsoft::ReactNative::ReactContext reactContext{ nullptr };
 
-        SignInNativeProvider provider;
+        SignIn::SignInNativeProvider provider;
     };
 }
