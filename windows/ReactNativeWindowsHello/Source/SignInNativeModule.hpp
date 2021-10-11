@@ -83,6 +83,6 @@ namespace winrt::ReactNativeWindowsHello
     private:
         Microsoft::ReactNative::ReactContext reactContext{ nullptr };
 
-        SignInNativeProvider provider;
+        SignIn::SignInNativeProvider provider;
     };
 }
