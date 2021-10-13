@@ -36,9 +36,10 @@ or
 npm install react-native-windows-hello --save
 ```
 
-After having it installed you can call all the Windows Hello methods through the `NativeModules`, so the usage would be:
+After having it installed you can call all the Windows Hello methods through the `SignIn` class, so the usage would be:
 ```javascript
-NativeModules.SignIn.requestScanPromise()
+const signIn = new SignIn();
+signIn.getConsentMessage()
   .then(result => {
     Alert.alert("SUCCESS", `${result}`);
   })
