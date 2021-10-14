@@ -1,5 +1,3 @@
-import { NativeModules } from "react-native";
+import SignInModule from "./source/SignInModule";
 
-const { ReactNativeWindowsHello } = NativeModules;
-
-export default ReactNativeWindowsHello;
+export const SignIn = SignInModule;

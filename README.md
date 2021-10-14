@@ -36,9 +36,10 @@ or
 npm install react-native-windows-hello --save
 ```
 
-After having it installed you can call all the Windows Hello methods through the `NativeModules`, so the usage would be:
+After having it installed you can call all the Windows Hello methods through the `SignIn` class, so the usage would be:
 ```javascript
-NativeModules.SignIn.requestScanPromise()
+const signIn = new SignIn();
+signIn.getConsentMessage()
   .then(result => {
     Alert.alert("SUCCESS", `${result}`);
   })
@@ -57,14 +58,8 @@ The following library provides you with the native modules exposing the followin
 
 | Method | Description | Returns |
 | ------ | - | - |
-| `SignIn`<br/>`.checkAvailabilityPromise` | Gets the status of biometric device on a user's machine and returns a promise with the result | `Promise` with `String` |
-| `SignIn`<br/>`.requestScanPromise` | Displays the biometric scan prompt as a popup and returns a promise after user's actions | `Promise` with `String` |
-| `SignIn`<br/>`.checkAvailabilityCallback` | Gets the status of biometric device on a user's machine and launches a callback with the result as a callback's parameter | Callback(`String`) |
-| `SignIn`<br/>`.requestScanCallback` | Displays the biometric scan prompt as a popup and returns a result through a callback | Callback(`String`) |
-| `SignIn`<br/>`.checkAvailabilityAsync` | Gets the status of biometric device on a user's machine and returns an empty callback, which acts as a notification about launching the request. The result of that action should be then manually fetched by running `getLastAvailabilityCheckResult` | Callback() |
-| `SignIn`<br/>`.requestScanAsync` | Displays the biometric scan prompt as a popup and returns an empty callback after user's actions, which acts as a notification about launching the request. The result of that action should be then manually fetched by running `getLastScanResult` | Callback() |
-| `SignIn`<br/>`.getLastScanResult` | Returns a promise with last result of a biometric device status | `Promise` with `String` |
-| `SignIn`<br/>`.getLastAvailabilityCheckResult` | Returns a promise with last result of a biometric signing in result | `Promise` with `String` |
+| `SignIn`<br/>`.getDeviceStatusMessage` | Gets the status of biometric device on a user's machine and returns a promise with the result.<br/>The returned promise is resolved if the status is OK, and is rejected in case of any issues with a device or biometric feature availability. | `Promise` with `String` |
+| `SignIn`<br/>`.getConsentMessage` | Displays the biometric scan prompt as a popup and returns a promise after user's actions.<br/>The returned promise is resolved if the verification was successful, and is rejected in case of failed verification (user cancelled the verification, number of tries was exceeded, etc.) | `Promise` with `String` |
 
 ---
 
