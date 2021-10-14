@@ -6,7 +6,7 @@
   "main": "index.js",
   "files": [
     "windows",
-    "src",
+    "source",
     "index.js",
     "README.md",
     "LICENSE"
