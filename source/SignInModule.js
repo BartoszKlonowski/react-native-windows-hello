@@ -1,8 +1,8 @@
 import { NativeModules } from "react-native";
 
 export class SignInModule {
-  getConsentMessage() {
-    return NativeModules.SignIn.requestScanPromise();
+  getConsentMessage(promptMessageText) {
+    return NativeModules.SignIn.requestScanPromise(promptMessageText);
   }
 
   getDeviceStatusMessage() {
