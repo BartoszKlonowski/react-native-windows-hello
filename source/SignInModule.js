@@ -1,7 +1,7 @@
 import { NativeModules } from "react-native";
 
 export class SignInModule {
-  async getConsentMessage(promptMessage) {
+  async getConsentMessage(promptMessage = "") {
     if (typeof promptMessage === "string") {
       return await NativeModules.SignIn.requestScanPromise(promptMessage);
     } else {
