@@ -40,9 +40,9 @@ namespace winrt::ReactNativeWindowsHello
         }
 
         REACT_METHOD( RequestScanPromise, L"requestScanPromise" );
-        void RequestScanPromise( React::ReactPromise<React::JSValue>&& result ) noexcept
+        void RequestScanPromise( const winrt::hstring& promptMessage, React::ReactPromise<React::JSValue>&& result ) noexcept
         {
-            if( provider.CheckUserVerification() == Windows::Security::Credentials::UI::UserConsentVerificationResult::Verified )
+            if( provider.CheckUserVerification( promptMessage ) == Windows::Security::Credentials::UI::UserConsentVerificationResult::Verified )
             {
                 result.Resolve( React::JSValue( provider.SignInScanStatus() ) );
             }
@@ -60,9 +60,9 @@ namespace winrt::ReactNativeWindowsHello
         }
 
         REACT_METHOD( RequestScanCallback, L"requestScanCallback" );
-        void RequestScanCallback( std::function<void( winrt::hstring )> biometricScanCallback ) noexcept
+        void RequestScanCallback( const winrt::hstring& promptMessage, std::function<void( winrt::hstring )> biometricScanCallback ) noexcept
         {
-            provider.CheckUserVerification();
+            provider.CheckUserVerification( promptMessage );
             biometricScanCallback( winrt::to_hstring( provider.SignInScanStatus() ) );
         }
 

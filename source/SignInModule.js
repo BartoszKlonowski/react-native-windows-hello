@@ -1,8 +1,12 @@
 import { NativeModules } from "react-native";
 
 export class SignInModule {
-  getConsentMessage() {
-    return NativeModules.SignIn.requestScanPromise();
+  async getConsentMessage(promptMessage = "") {
+    if (typeof promptMessage === "string") {
+      return await NativeModules.SignIn.requestScanPromise(promptMessage);
+    } else {
+      throw "ERROR: promptMessage should be a valid string";
+    }
   }
 
   getDeviceStatusMessage() {
