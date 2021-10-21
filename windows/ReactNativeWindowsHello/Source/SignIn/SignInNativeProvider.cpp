@@ -18,10 +18,9 @@ namespace winrt::ReactNativeWindowsHello::SignIn
         return signInScanStatus;
     }
 
-    Windows::Security::Credentials::UI::UserConsentVerificationResult SignInNativeProvider::CheckUserVerification()
+    Windows::Security::Credentials::UI::UserConsentVerificationResult SignInNativeProvider::CheckUserVerification( const winrt::hstring& promptMessage )
     {
-        const winrt::hstring scanPromptMessage = L"Please confirm your identity by SignIn scan...";
-        auto&& consentResult = winrt::Windows::Security::Credentials::UI::UserConsentVerifier::RequestVerificationAsync( scanPromptMessage ).get();
+        auto&& consentResult = winrt::Windows::Security::Credentials::UI::UserConsentVerifier::RequestVerificationAsync( promptMessage ).get();
         signInScanStatus = helper->UserConsentVerificationResultToMessage( consentResult );
         return consentResult;
     }
