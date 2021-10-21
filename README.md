@@ -56,14 +56,12 @@ Check out the [example project](example) for more examples.
 
 The following library provides you with the native modules exposing the following methods:
 
-| `SignIn.getDeviceStatusMessage`  | Arguments | Returns |
-| - | - | - |
+| **Method** & Description | Arguments | Returns |
+| - | :-: | - |
+| **SignIn.getDeviceStatusMessage** | | |
 | Gets the status of biometric device on a user's machine and returns a promise with the result.<br/>The returned promise is resolved if the status is OK, and is rejected in case of any issues with a device or biometric feature availability. | - | `Promise` with `String` |
-
-
-| `SignIn.getConsentMessage` | Arguments | Returns |
-| - | - | - |
-| Displays the biometric scan prompt as a popup and returns a promise after user's actions.<br/>The returned promise is resolved if the verification was successful, and is rejected in case of failed verification (user cancelled the verification, number of tries was exceeded, etc.),<br/>or when incorrect `promptMessage` has been passed as an argument.| `promptMessage : String`<br/>Additional text which will be placed in the login prompt popup.<br/> | `Promise` with `String`) |
+| **SignIn.getConsentMessage** | | |
+| Displays the biometric scan prompt as a popup and returns a promise after user's actions.<br/>The returned promise is resolved if the verification was successful, and is rejected in case of failed verification (user cancelled the verification, number of tries was exceeded, etc.),<br/>or when incorrect `promptMessage` has been passed as an argument.| `promptMessage : String`<br/>Additional text which will be placed in the login prompt popup.<br/> | `Promise` with `String` |
 
 ---
 
