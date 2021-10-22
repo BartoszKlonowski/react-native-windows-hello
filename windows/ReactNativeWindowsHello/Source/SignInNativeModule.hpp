@@ -80,6 +80,12 @@ namespace winrt::ReactNativeWindowsHello
             biometricScanCallback();
         }
 
+        REACT_EVENT( OnConsentVerifiedMessage, L"onConsentVerifiedMessage" );
+        std::function<void( winrt::hstring )> OnConsentVerifiedMessage;
+
+        REACT_EVENT( OnDeviceStatusCheckedMessage, L"onDeviceAvailabilityCheckedMessage" );
+        std::function<void( winrt::hstring )> OnDeviceStatusCheckedMessage;
+
     private:
         Microsoft::ReactNative::ReactContext reactContext{ nullptr };
 
