@@ -29,26 +29,28 @@ namespace winrt::ReactNativeWindowsHello
         REACT_METHOD( CheckAvailabilityPromise, L"checkAvailabilityPromise" );
         void CheckAvailabilityPromise( React::ReactPromise<React::JSValue>&& result ) noexcept
         {
-            if( provider.CheckSignInAvailability() == Windows::Security::Credentials::UI::UserConsentVerifierAvailability::Available )
+            try
             {
-                result.Resolve( React::JSValue( provider.SignInDeviceStatus() ) );
+                const auto availabilityResult = (int)provider.CheckSignInAvailability();
+                result.Resolve( React::JSValue( availabilityResult ) );
             }
-            else
+            catch(const std::exception& e)
             {
-                result.Reject( provider.SignInDeviceStatus().c_str() );
+                result.Reject( e.what() );
             }
         }
 
         REACT_METHOD( RequestScanPromise, L"requestScanPromise" );
         void RequestScanPromise( const winrt::hstring& promptMessage, React::ReactPromise<React::JSValue>&& result ) noexcept
         {
-            if( provider.CheckUserVerification( promptMessage ) == Windows::Security::Credentials::UI::UserConsentVerificationResult::Verified )
+            try
             {
-                result.Resolve( React::JSValue( provider.SignInScanStatus() ) );
+                const auto consentVerificationResult = (int)provider.CheckUserVerification( promptMessage );
+                result.Resolve( React::JSValue( consentVerificationResult ) );
             }
-            else
+            catch( const std::exception& e )
             {
-                result.Reject( provider.SignInScanStatus().c_str() );
+                result.Reject( e.what() );
             }
         }
 
