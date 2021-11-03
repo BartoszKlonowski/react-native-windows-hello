@@ -4,9 +4,6 @@
       ["@babel/preset-react"]
     ],
     "env": {
-        "firefox": {
-          "sourceMaps": "inline"
-        },
         "development": {
           "presets": [["@babel/preset-react", { "development": true }]]
         }
