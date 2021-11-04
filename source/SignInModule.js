@@ -1,16 +1,47 @@
 import { NativeModules } from "react-native";
+import {
+  getEnumByNativeValue,
+  userConsentVerificationResult,
+  userConsentVerifierAvailability,
+} from "./Statuses";
 
 export class SignInModule {
-  async getConsentMessage(promptMessage = "") {
-    if (typeof promptMessage === "string") {
-      return await NativeModules.SignIn.requestScanPromise(promptMessage);
-    } else {
-      throw "ERROR: promptMessage should be a valid string";
-    }
+  requestConsentVerification(promptMessage = "") {
+    return new Promise((resolve, reject) => {
+      if (typeof promptMessage === "string") {
+        NativeModules.SignIn.requestScanPromise(promptMessage)
+          .then((result) => {
+            const resultObject = getEnumByNativeValue(
+              userConsentVerificationResult,
+              result
+            );
+            resolve(resultObject);
+            return resultObject;
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      } else {
+        reject("ERROR: promptMessage should be a valid string");
+      }
+    });
   }
 
-  getDeviceStatusMessage() {
-    return NativeModules.SignIn.checkAvailabilityPromise();
+  getDeviceStatus() {
+    return new Promise((resolve, reject) => {
+      NativeModules.SignIn.checkAvailabilityPromise()
+        .then((result) => {
+          const resultObject = getEnumByNativeValue(
+            userConsentVerifierAvailability,
+            result
+          );
+          resolve(resultObject);
+          return resultObject;
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   }
 }
 
