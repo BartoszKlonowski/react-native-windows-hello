@@ -5,53 +5,53 @@ export const userConsentVerificationResult = Object.freeze({
   }),
   DeviceNotPresent: Object.freeze({
     value: 1,
-    message: "No biometric device found.",
+    message: "There is no biometric verifier device available.",
   }),
   NotConfiguredForUser: Object.freeze({
     value: 2,
-    message:
-      "No biometric data registered - please add a biometric configuration and try again.",
+    message: "A biometric verifier device is not configured for this user.",
   }),
   DisabledByPolicy: Object.freeze({
     value: 3,
-    message: "Biometric verification is disabled by policy.",
+    message: "Group policy has disabled the biometric verifier device.",
   }),
   DeviceBusy: Object.freeze({
     value: 4,
-    message: "Biometric device is busy.",
+    message:
+      "The biometric verifier device is performing an operation and is unavailable.",
   }),
   RetriesExhausted: Object.freeze({
     value: 5,
     message:
-      "There has been too many failed attempts - Biometric authentication canceled.",
+      "After 10 attempts, the original verification request and all subsequent attempts at the same verification were not verified.",
   }),
   Canceled: Object.freeze({
     value: 6,
-    message: "Biometric authentication canceled.",
+    message: "The verification operation was canceled.",
   }),
 });
 
 export const userConsentVerifierAvailability = Object.freeze({
   Available: Object.freeze({
     value: 0,
-    message: "Biometric device available.",
+    message: "A biometric verifier device is available.",
   }),
   DeviceNotPresent: Object.freeze({
     value: 1,
-    message: "No biometric device found.",
+    message: "There is no biometric verifier device available.",
   }),
   NotConfiguredForUser: Object.freeze({
     value: 2,
-    message:
-      "No biometric device configured - please add a biometric configuration and try again.",
+    message: "A biometric verifier device is not configured for this user.",
   }),
   DisabledByPolicy: Object.freeze({
     value: 3,
-    message: "Biometric device is disabled by policy.",
+    message: "Group policy has disabled the biometric verifier device.",
   }),
   DeviceBusy: Object.freeze({
     value: 4,
-    message: "Biometric device is busy.",
+    message:
+      "The biometric verifier device is performing an operation and is unavailable.",
   }),
 });
 
