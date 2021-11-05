@@ -67,14 +67,14 @@ namespace winrt::ReactNativeWindowsHello
         }
 
         REACT_METHOD( CheckAvailabilityAsync, L"checkAvailabilityAsync" );
-        void CheckAvailabilityAsync( std::function<void(void)> biometricDeviceAvailabilityCallback ) noexcept
+        void CheckAvailabilityAsync( std::function<void( void )> biometricDeviceAvailabilityCallback ) noexcept
         {
             provider.CheckSignInAvailabilityAsync();
             biometricDeviceAvailabilityCallback();
         }
 
         REACT_METHOD( RequestScanAsync, L"requestScanAsync" );
-        void RequestScanAsync( std::function<void(void)> biometricScanCallback ) noexcept
+        void RequestScanAsync( std::function<void( void )> biometricScanCallback ) noexcept
         {
             provider.CheckUserVerificationAsync();
             biometricScanCallback();
