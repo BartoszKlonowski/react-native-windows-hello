@@ -67,7 +67,6 @@ jobs:
           name: "Verify the C++ code formatting"
           command: |
             npx clang-format --verbose --dry-run -Werror .\windows\ReactNativeWindowsHello\Source\*.hpp
-            npx clang-format --verbose --dry-run -Werror .\windows\UnitTests\*.cpp
 
   tests-javascript:
     executor:
