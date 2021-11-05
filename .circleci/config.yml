@@ -159,9 +159,6 @@ workflows:
       - tests-javascript:
           requires:
             - verify-javascript
-      - tests-cpp:
-          requires:
-            - verify-cpp
       - build-windows-solution:
           name: build-project-release-x64
           configuration: "release"
