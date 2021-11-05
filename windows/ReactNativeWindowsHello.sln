@@ -33,8 +33,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mso", "..\node_modules\reac
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Include", "..\node_modules\react-native-windows\include\Include.vcxitems", "{EF074BA1-2D54-4D49-A28E-5E040B47CD2E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests\UnitTests.vcxproj", "{A5ACF214-C79A-4EF1-82D5-EA6D15BD8BDB}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\node_modules\react-native-windows\Shared\Shared.vcxitems*{2049dbe9-8d13-42c9-ae4b-413ae38fffd0}*SharedItemsImports = 9
@@ -136,18 +134,6 @@ Global
 		{FCA38F3C-7C73-4C47-BE4E-32F77FA8538D}.Release|x64.Build.0 = Release|x64
 		{FCA38F3C-7C73-4C47-BE4E-32F77FA8538D}.Release|x86.ActiveCfg = Release|Win32
 		{FCA38F3C-7C73-4C47-BE4E-32F77FA8538D}.Release|x86.Build.0 = Release|Win32
-		{A5ACF214-C79A-4EF1-82D5-EA6D15BD8BDB}.Debug|ARM64.ActiveCfg = Debug|Win32
-		{A5ACF214-C79A-4EF1-82D5-EA6D15BD8BDB}.Debug|x64.ActiveCfg = Debug|x64
-		{A5ACF214-C79A-4EF1-82D5-EA6D15BD8BDB}.Debug|x64.Build.0 = Debug|x64
-		{A5ACF214-C79A-4EF1-82D5-EA6D15BD8BDB}.Debug|x64.Deploy.0 = Debug|x64
-		{A5ACF214-C79A-4EF1-82D5-EA6D15BD8BDB}.Debug|x86.ActiveCfg = Debug|Win32
-		{A5ACF214-C79A-4EF1-82D5-EA6D15BD8BDB}.Debug|x86.Build.0 = Debug|Win32
-		{A5ACF214-C79A-4EF1-82D5-EA6D15BD8BDB}.Release|ARM64.ActiveCfg = Release|Win32
-		{A5ACF214-C79A-4EF1-82D5-EA6D15BD8BDB}.Release|x64.ActiveCfg = Release|x64
-		{A5ACF214-C79A-4EF1-82D5-EA6D15BD8BDB}.Release|x64.Build.0 = Release|x64
-		{A5ACF214-C79A-4EF1-82D5-EA6D15BD8BDB}.Release|x64.Deploy.0 = Release|x64
-		{A5ACF214-C79A-4EF1-82D5-EA6D15BD8BDB}.Release|x86.ActiveCfg = Release|Win32
-		{A5ACF214-C79A-4EF1-82D5-EA6D15BD8BDB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
