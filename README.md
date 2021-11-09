@@ -28,20 +28,31 @@
 ## Installation & Usage
 
 To install this module `cd` to your project directory and enter the following command:
-```
-yarn add react-native-windows-hello
+
+```console
+yarn add -D react-native-windows-hello
 ```
 or
-```
+```console
 npm install react-native-windows-hello --save
 ```
 
-After having it installed you can call all the Windows Hello methods through the `SignIn` class, so the usage would be:
+After having it installed you can import all the Windows Hello features like so:
+
 ```javascript
-const signIn = new SignIn();
-signIn.getConsentMessage()
+import { SignIn, verificationResult, availabilityStatus } from 'react-native-windows-hello';
+```
+
+The [API](#API) contains two methods: `requestConsentVerification` and `getDeviceStatus` each returning a promise with result object containing both `value` and `message` with pre-defined text (in english) describing the returned result.
+<br/>So the example of usage would be:
+
+```javascript
+SignIn.requestConsentVerification("This customized message will be displayed in biometric prompt")
   .then(result => {
-    Alert.alert("SUCCESS", `${result}`);
+    Alert.alert(
+      `${result === verificationResult.Verified ? "SUCCESS" : "ERROR"}`,
+      result.message
+    );
   })
   .catch(error => {
     Alert.alert("ERROR:", `${error}`);
