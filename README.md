@@ -70,9 +70,9 @@ The following library provides you with the native modules exposing the followin
 | **Method** & Description | Arguments | Returns |
 | - | :-: |:-:|
 | **SignIn.getDeviceStatus** | | |
-| Gets the status of biometric device on a user's machine and returns a promise with the result.<br/>The returned promise is resolved with a status, and is rejected in case of any internal issues/errors. | - | `Promise`<br/>with<br/>`availabilityStatus` |
+| Gets the status of biometric device on a user's machine and returns a promise with the result.<br/>The returned promise is resolved with a status, and is rejected in case of any internal issues/errors. | - | `Promise`<br/>with<br/>[`availabilityStatus`](#availabilityStatus) |
 | **SignIn.requestConsentVerification** | | |
-| Displays the biometric scan prompt as a popup and returns a promise after user's actions.<br/>The returned promise is resolved no matter if the verification was successful or not, and is rejected in case of any internal failure/error or when incorrect `promptMessage` has been passed as an argument.| `promptMessage : String`<br/>Additional text which will be placed in the login prompt popup.<br/> | `Promise`<br/>with<br/>`verificationResult` |
+| Displays the biometric scan prompt as a popup and returns a promise after user's actions.<br/>The returned promise is resolved no matter if the verification was successful or not, and is rejected in case of any internal failure/error or when incorrect `promptMessage` has been passed as an argument.| `promptMessage : String`<br/>Additional text which will be placed in the login prompt popup.<br/> | `Promise`<br/>with<br/>[`verificationResult`](#verificationResult) |
 
 ---
 
@@ -85,7 +85,7 @@ Each of these objects contain two properties:
 
 There are two groups of result objects:
 
-[`AvailabilityStatus`](https://docs.microsoft.com/en-us/uwp/api/windows.security.credentials.ui.userconsentverifieravailability?view=winrt-22000)
+#### [`availabilityStatus`](https://docs.microsoft.com/en-us/uwp/api/windows.security.credentials.ui.userconsentverifieravailability?view=winrt-22000)
 | Result | `value` | `message` |
 |-|-|-|
 | Available | 0 | "A biometric verifier device is available." |
@@ -96,7 +96,7 @@ There are two groups of result objects:
 
 and
 
-[`VerificationResult`](https://docs.microsoft.com/en-us/uwp/api/windows.security.credentials.ui.userconsentverificationresult?view=winrt-22000)
+#### [`verificationResult`](https://docs.microsoft.com/en-us/uwp/api/windows.security.credentials.ui.userconsentverificationresult?view=winrt-22000)
 | Result | `value` | `message` |
 |-|-|-|
 | Verified | 0 | "User consent verified" |
