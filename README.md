@@ -68,11 +68,44 @@ Check out the [example project](example) for more examples.
 The following library provides you with the native modules exposing the following methods:
 
 | **Method** & Description | Arguments | Returns |
-| - | :-: | - |
-| **SignIn.getDeviceStatusMessage** | | |
-| Gets the status of biometric device on a user's machine and returns a promise with the result.<br/>The returned promise is resolved if the status is OK, and is rejected in case of any issues with a device or biometric feature availability. | - | `Promise` with `String` |
-| **SignIn.getConsentMessage** | | |
-| Displays the biometric scan prompt as a popup and returns a promise after user's actions.<br/>The returned promise is resolved if the verification was successful, and is rejected in case of failed verification (user cancelled the verification, number of tries was exceeded, etc.),<br/>or when incorrect `promptMessage` has been passed as an argument.| `promptMessage : String`<br/>Additional text which will be placed in the login prompt popup.<br/> | `Promise` with `String` |
+| - | :-: |:-:|
+| **SignIn.getDeviceStatus** | | |
+| Gets the status of biometric device on a user's machine and returns a promise with the result.<br/>The returned promise is resolved with a status, and is rejected in case of any internal issues/errors. | - | `Promise`<br/>with<br/>`availabilityStatus` |
+| **SignIn.requestConsentVerification** | | |
+| Displays the biometric scan prompt as a popup and returns a promise after user's actions.<br/>The returned promise is resolved no matter if the verification was successful or not, and is rejected in case of any internal failure/error or when incorrect `promptMessage` has been passed as an argument.| `promptMessage : String`<br/>Additional text which will be placed in the login prompt popup.<br/> | `Promise`<br/>with<br/>`verificationResult` |
+
+---
+
+### Status result object
+
+Each method returns one of the enumerated objects representing the result of called action (`getDeviceStatus`, `requestConsentVerification`).
+Each of these objects contain two properties:
+* `value` - contains numerical value matching the official values. This can be used by developers for internal implementation keeping the last result for simplicity.
+* `message` - official text (in english) saying exactly what the result is. This can be used to directly display the status without conversions.
+
+There are two groups of result objects:
+
+[`AvailabilityStatus`](https://docs.microsoft.com/en-us/uwp/api/windows.security.credentials.ui.userconsentverifieravailability?view=winrt-22000)
+| Result | `value` | `message` |
+|-|-|-|
+| Available | 0 | "A biometric verifier device is available." |
+| DeviceNotPresent | 1 | "There is no biometric verifier device available." |
+| NotConfiguredForUser | 2 | "A biometric verifier device is not configured for this user." |
+| DisabledByPolicy | 3 | "Group policy has disabled the biometric verifier device." |
+| DeviceBusy | 4 | "The biometric verifier device is performing an operation and is unavailable." |
+
+and
+
+[`VerificationResult`](https://docs.microsoft.com/en-us/uwp/api/windows.security.credentials.ui.userconsentverificationresult?view=winrt-22000)
+| Result | `value` | `message` |
+|-|-|-|
+| Verified | 0 | "User consent verified" |
+| DeviceNotPresent | 1 | "There is no biometric verifier device available." |
+| NotConfiguredForUser | 2 | "A biometric verifier device is not configured for this user." |
+| DisabledByPolicy | 3 | "Group policy has disabled the biometric verifier device." |
+| DeviceBusy | 4 | "The biometric verifier device is performing an operation and is unavailable." |
+| RetriesExhausted | 5 | "After 10 attempts, the original verification request and all subsequent attempts at the same verification were not verified." |
+| Canceled | 6 | "The verification operation was canceled." |
 
 ---
 
