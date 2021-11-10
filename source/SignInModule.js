@@ -6,7 +6,7 @@ import {
 } from "./Statuses";
 
 export class SignInModule {
-  requestConsentVerification(promptMessage = "") {
+  static requestConsentVerification(promptMessage = "") {
     return new Promise((resolve, reject) => {
       if (typeof promptMessage === "string") {
         NativeModules.SignIn.requestScanPromise(promptMessage)
@@ -27,7 +27,7 @@ export class SignInModule {
     });
   }
 
-  getDeviceStatus() {
+  static getDeviceStatus() {
     return new Promise((resolve, reject) => {
       NativeModules.SignIn.checkAvailabilityPromise()
         .then((result) => {
