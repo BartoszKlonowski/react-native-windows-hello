@@ -174,3 +174,10 @@ workflows:
           requires:
             - verify-cpp
             - verify-javascript
+      - build-example-application:
+          name: build-example-release-app-x64
+          configuration: "release"
+          platform: "x64"
+          requires:
+            - verify-cpp
+            - verify-javascript
