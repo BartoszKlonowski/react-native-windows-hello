@@ -115,10 +115,9 @@ jobs:
     steps:
       - run: git config --global core.autocrlf false
       - checkout
-      - restore_cache:
-          keys:
-            - v3-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeWindowsHello.sln" }}-{{ checksum "package.json" }}-{{ checksum "example/package.json" }}
-            - v3-deps-
+      - run:
+          name: "install dependencies for example app"
+          command: cd example; yarn install
       - run:
           name: "Build the application for Windows OS"
           command: cd example; npx react-native run-windows --arch << parameters.platform >> --no-deploy --no-launch --no-packager --no-autolink --logging -- << parameters.configuration >>
