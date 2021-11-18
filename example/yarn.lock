@@ -5435,6 +5435,11 @@ react-native-codegen@^0.0.7:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
+react-native-windows-hello@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-windows-hello/-/react-native-windows-hello-1.0.0.tgz#8428a9912814a45218879697931ec1191ece5975"
+  integrity sha512-P6xwG7wo4Tneixgaxr27rYTa/ev03i3qsKYbQtHo55NkQA70bCm5CJiHxCFsAvpEvXs65dMVVPEcC3L5JxCSwg==
+
 react-native-windows@0.66.4:
   version "0.66.4"
   resolved "https://registry.yarnpkg.com/react-native-windows/-/react-native-windows-0.66.4.tgz#2a787abc837b0f3cf67dd77de2c22a01f51d05bd"

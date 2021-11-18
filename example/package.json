@@ -23,6 +23,7 @@
     "eslint": "7.14.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.66.2",
+    "react-native-windows-hello": "^1.0.0",
     "react-test-renderer": "17.0.2"
   },
   "jest": {
