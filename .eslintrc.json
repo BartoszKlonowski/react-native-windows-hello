@@ -1,3 +1,4 @@
 {
-    "extends": "@callstack"
+    "extends": "@callstack",
+    "ignorePatterns": ["example/**"]
 }
