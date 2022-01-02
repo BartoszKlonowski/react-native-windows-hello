@@ -147,7 +147,7 @@ jobs:
 
 workflows:
   version: 2.1
-  build-x64:
+  build-library:
     jobs:
       - install
       - verify-javascript:
@@ -173,10 +173,9 @@ workflows:
           requires:
             - verify-cpp
             - verify-javascript
+  build-example:
+    jobs:
       - build-example-application:
           name: build-example-release-app-x64
           configuration: "release"
           platform: "x64"
-          requires:
-            - verify-cpp
-            - verify-javascript
