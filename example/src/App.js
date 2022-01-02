@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     color: 'blue',
   },
   informationPanel: {
+    justifyContent: 'center',
     margin: 20,
     flexDirection: 'row',
   },
