@@ -8,10 +8,10 @@
     <a href="https://www.npmjs.com/package/react-native-windows-hello">
         <img src="https://img.shields.io/npm/v/react-native-windows-hello.svg" alt="Latest version released on npmjs" />
     </a>
-    <a href="https://app.circleci.com/pipelines/github/callstack-internal/react-native-windows-hello?branch=main">
+    <a href="https://app.circleci.com/pipelines/github/callstack/react-native-windows-hello?branch=main">
         <img src="https://circleci.com/gh/callstack/react-native-windows-hello/tree/main.svg?style=shield" alt="Build on CircleCI" />
     </a>
-    <a href="https://github.com/callstack-internal/react-native-windows-hello/blob/main/LICENSE.md">
+    <a href="https://github.com/callstack/react-native-windows-hello/blob/main/LICENSE.md">
         <img src="https://img.shields.io/npm/l/react-native-windows-hello.svg" alt="License" />
     </a>
 </p>
