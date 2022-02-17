@@ -7,7 +7,6 @@
 #include <unknwn.h>
 #include <windows.h>
 #include <CppWinRTIncludes.h>
-#include <VersionMacros.h>
 #include <winrt/Windows.Security.Credentials.UI.h>
 
 #include <winrt/Microsoft.ReactNative.h>
