@@ -13,7 +13,8 @@
   "dependencies": {
     "react": "17.0.2",
     "react-native": "0.66.3",
-    "react-native-windows": "0.66.4"
+    "react-native-windows": "0.66.4",
+    "react-native-windows-hello": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -25,7 +26,6 @@
     "metro-react-native-babel-preset": "^0.66.2",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.9.0",
-    "react-native-windows-hello": "^1.0.0",
     "react-test-renderer": "17.0.2"
   },
   "jest": {
