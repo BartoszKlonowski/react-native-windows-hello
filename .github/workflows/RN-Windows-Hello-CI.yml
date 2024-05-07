@@ -14,8 +14,6 @@ jobs:
       - name: Cache node modules
         id: cache-npm
         uses: actions/cache@v3.0.7
-        env:
-          cache-name: cached-ios-npm-deps
         with:
           path: ./node_modules
           key: ${{ hashFiles('./package.json') }}
@@ -37,11 +35,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Cache
+      - name: Cache node modules
+        id: cache-npm
         uses: actions/cache@v3.0.7
         with:
           path: ./node_modules
           key: ${{ hashFiles('./package.json') }}
+
+      - name: Install required dependencies on cache miss (npm)
+        if: steps.cache-npm.outputs.cache-hit != 'true'
+        run: |
+          npm install
 
       - name: Run ESLint on the sources
         run: npx eslint .
@@ -63,11 +67,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Cache
+      - name: Cache node modules
+        id: cache-npm
         uses: actions/cache@v3.0.7
         with:
           path: ./node_modules
           key: ${{ hashFiles('./package.json') }}
+
+      - name: Install required dependencies on cache miss (npm)
+        if: steps.cache-npm.outputs.cache-hit != 'true'
+        run: |
+          npm install
 
       - name: Run the JS tests
         run: npx jest
@@ -102,11 +112,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Cache
+      - name: Cache node modules
+        id: cache-npm
         uses: actions/cache@v3.0.7
         with:
           path: ./node_modules
           key: ${{ hashFiles('./package.json') }}
+
+      - name: Install required dependencies on cache miss (npm)
+        if: steps.cache-npm.outputs.cache-hit != 'true'
+        run: |
+          npm install
 
       - name: Build the Windows project
         run: msbuild -p:Configuration=debug -p:Platform=x64 .\\windows\\ReactNativeWindowsHello.sln
