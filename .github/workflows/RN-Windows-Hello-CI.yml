@@ -1,0 +1,106 @@
+name: RN-Windows-Hello-CI
+
+on: [push]
+
+jobs:
+  install:
+    name: Install dependencies
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3.0.7
+        env:
+          cache-name: cached-ios-npm-deps
+        with:
+          path: ./node_modules
+          key: ${{ hashFiles('./package.json') }}
+
+      - name: Install required dependencies on cache miss (npm)
+        if: steps.cache-npm.outputs.cache-hit != 'true'
+        run: |
+          npm install
+
+  verify:
+    name: Verify the sources
+    runs-on: windows-latest
+    needs: install
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Cache
+        uses: actions/cache@v3.0.7
+        with:
+          path: ./node_modules
+          key: ${{ hashFiles('./package.json') }}
+
+      - name: Run ESLint on the sources
+        run: npx eslint .
+
+      - name: Verify Cpp
+        run: |
+          git config clangFormat.binary node_modules/.bin/clang-format
+          git config clangFormat.style file
+          npx clang-format --verbose --dry-run -Werror .\windows\ReactNativeWindowsHello\Source\*.hpp
+          npx clang-format --verbose --dry-run -Werror .\windows\ReactNativeWindowsHello\Source\SignIn\*.cpp
+          npx clang-format --verbose --dry-run -Werror .\windows\ReactNativeWindowsHello\Source\SignIn\*.hpp
+
+  tests:
+    name: Run unit tests for both native and JS layer
+    runs-on: windows-latest
+    needs: [install, verify]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Cache
+        uses: actions/cache@v3.0.7
+        with:
+          path: ./node_modules
+          key: ${{ hashFiles('./package.json') }}
+
+      - name: Build the GTests project
+        run: npx eslint .
+
+      - name: Run the unit testing
+        run: .\windows\Build\UnitTests-Debug-x64\UnitTests.exe
+
+  build-example-application:
+    name: Build the x64 version of example application
+    runs-on: windows-latest
+    needs: install
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install deps for example application
+        run: cd example; npm install
+
+      - name: "Build the application for Windows OS"
+        run: cd example; npx react-native run-windows --arch x64 --no-deploy --no-launch --no-packager --no-autolink --logging --debug
+
+  build-windows-solution:
+    name: Build the x64 version of package windows solution
+    runs-on: windows-latest
+    needs: [install, verify]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Cache
+        uses: actions/cache@v3.0.7
+        with:
+          path: ./node_modules
+          key: ${{ hashFiles('./package.json') }}
+
+      - name: Build the Windows project
+        run: msbuild -p:Configuration=debug -p:Platform=x64 .\\windows\\ReactNativeWindowsHello.sln
