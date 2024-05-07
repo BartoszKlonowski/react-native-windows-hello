@@ -69,8 +69,11 @@ jobs:
           path: ./node_modules
           key: ${{ hashFiles('./package.json') }}
 
+      - name: Run the JS tests
+        run: npx jest
+
       - name: Build the GTests project
-        run: npx eslint .
+        run: msbuild -p:Configuration=debug -p:Platform=x64 -target:UnitTests .\windows\ReactNativeWindowsHello.sln
 
       - name: Run the unit testing
         run: .\windows\Build\UnitTests-Debug-x64\UnitTests.exe
