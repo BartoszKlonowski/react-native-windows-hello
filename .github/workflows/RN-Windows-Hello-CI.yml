@@ -31,6 +31,9 @@ jobs:
     needs: install
 
     steps:
+      - name: Config cross-platform
+        run: git config --global core.autocrlf false
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
