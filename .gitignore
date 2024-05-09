@@ -28,6 +28,10 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 
+# Windows
+#
+msbuild.binlog
+
 # Android/IntelliJ
 #
 build/
